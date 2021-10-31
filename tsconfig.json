@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
-    "module": "es2015",
+    "module": "es2020",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noImplicitReturns": true,
@@ -14,8 +14,25 @@
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@images": ["./assets/images"],
+      "@svg": ["./assets/svg"],
+      "@components/*": ["./src/components/*"],
+      "@config/*": ["./src/config/*"],
+      "@translate": ["./src/i18n"],
+      "@models": ["./src/models"],
+      "@models/*": ["./src/models/*"],
+      "@navigators": ["./src/navigators"],
+      "@navigators/*": ["./src/navigators/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@api": ["./src/services/api"],
+      "@theme": ["./src/theme"],
+      "@utils/*": ["./src/utils/*"]
+    },
+    "typeRoots": ["node_modules/@types", "type"]
   },
   "exclude": ["node_modules"],
-  "include": ["index.js", "app", "test", "storybook"]
+  "include": ["./"]
 }
