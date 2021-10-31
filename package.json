@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "pre-commit": "tsc --noEmit && lint-staged",
     "start": "react-native start",
     "ios": "react-native run-ios",
     "android": "react-native run-android",
@@ -84,10 +85,12 @@
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-native": "3.10.0",
     "fbjs-scripts": "3.0.0",
+    "husky": "^7.0.4",
     "jest": "^25.5.4",
     "jest-circus": "25.5.4",
     "jest-expo": "^40.0.1",
     "jetifier": "1.6.6",
+    "lint-staged": "^11.2.6",
     "npm-run-all": "4.1.5",
     "patch-package": "6.2.2",
     "postinstall-prepare": "1.0.1",
@@ -194,5 +197,21 @@
         }
       ]
     }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn pre-commit",
+      "pre-push": "yarn lint",
+      "pre-build": "yarn lint"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+      "eslint --ext .tsx --ext .ts src/ --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">= 1.0.0"
   }
 }
