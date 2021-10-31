@@ -6,6 +6,7 @@ export default {
     'silver-300': '#f4f4f4',
     'silver-500': '#b1b1b1',
     'silver-600': '#8a8a8a',
+    'silver-700': '#797979',
   },
   font: {
     family: {
