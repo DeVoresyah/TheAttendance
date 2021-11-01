@@ -19,7 +19,7 @@ export function StorybookUIRoot() {
   useEffect(() => {
     (async () => {
       if (typeof __TEST__ === 'undefined' || !__TEST__) {
-        const Reactotron = require('../app/services/reactotron');
+        const Reactotron = require('../src/services/reactotron');
         const reactotron = new Reactotron.Reactotron();
         reactotron.setup();
       }
