@@ -76,6 +76,15 @@ PODS:
   - glog (0.3.5)
   - hermes-engine (0.7.2)
   - libevent (2.1.12)
+  - libwebp (1.2.0):
+    - libwebp/demux (= 1.2.0)
+    - libwebp/mux (= 1.2.0)
+    - libwebp/webp (= 1.2.0)
+  - libwebp/demux (1.2.0):
+    - libwebp/webp
+  - libwebp/mux (1.2.0):
+    - libwebp/demux
+  - libwebp/webp (1.2.0)
   - OpenSSL-Universal (1.1.180)
   - RCT-Folly (2020.01.13.00):
     - boost-for-react-native
@@ -355,6 +364,10 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.10):
     - React
+  - RNFastImage (8.5.11):
+    - React-Core
+    - SDWebImage (~> 5.11.1)
+    - SDWebImageWebPCoder (~> 0.8.4)
   - RNGestureHandler (1.10.3):
     - React-Core
   - RNKeychain (6.2.0):
@@ -364,6 +377,12 @@ PODS:
     - React-RCTImage
   - RNVectorIcons (9.0.0):
     - React-Core
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SDWebImageWebPCoder (0.8.4):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.10)
   - UMAppLoader (1.4.0)
   - UMBarCodeScannerInterface (5.4.0)
   - UMCameraInterface (5.4.0)
@@ -446,6 +465,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -478,7 +498,10 @@ SPEC REPOS:
     - FlipperKit
     - hermes-engine
     - libevent
+    - libwebp
     - OpenSSL-Universal
+    - SDWebImage
+    - SDWebImageWebPCoder
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -554,6 +577,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNFastImage:
+    :path: "../node_modules/react-native-fast-image"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNKeychain:
@@ -613,6 +638,7 @@ SPEC CHECKSUMS:
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   hermes-engine: 7d97ba46a1e29bacf3e3c61ecb2804a5ddd02d4f
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
+  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 6d3e854f0e7260a648badd0d44fc364bc9da9728
@@ -640,10 +666,13 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   RNCAsyncStorage: 26f25150da507524a7815f2ada06ca0967f65633
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
+  RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNKeychain: b8e0711b959a19c5b057d1e970d3c83d159b6da5
   RNScreens: 21b73c94c9117e1110a79ee0ee80c93ccefed8ce
   RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
   UMAppLoader: 92d044af52626af3d81a69796ad666fc7a9a7d78
   UMBarCodeScannerInterface: 3f6c1b09ef4b867ce752b8c0b3893bcf9cd85f32
   UMCameraInterface: d516032121192fee9a6c93bdfff0bb2cc7282796
