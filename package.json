@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "pre-commit": "tsc --noEmit && lint-staged",
+    "prepare": "husky install",
     "start": "react-native start",
     "ios": "react-native run-ios",
     "android": "react-native run-android",
@@ -12,11 +14,11 @@
     "ci:build:e2e": "detox build -c ios.sim.release",
     "compile": "tsc --noEmit -p . --pretty",
     "format": "npm-run-all format:*",
-    "format:js": "prettier --write \"app/**/*.js\"",
-    "format:json": "prettier --write \"app/**/*.json\"",
+    "format:js": "prettier --write \"src/**/*.js\"",
+    "format:json": "prettier --write \"src/**/*.json\"",
     "format:md": "prettier --write \"**/*.md\"",
-    "format:ts": "prettier --write \"app/**/*.ts{,x}\"",
-    "lint": "eslint index.js app storybook test --fix --ext .js,.ts,.tsx && yarn format",
+    "format:ts": "prettier --write \"src/**/*.ts{,x}\"",
+    "lint": "eslint --ext .tsx --ext .ts src/ --fix",
     "patch": "patch-package",
     "storybook": "start-storybook -p 9001 -c ./storybook",
     "test": "jest",
@@ -31,8 +33,8 @@
     "@react-native-async-storage/async-storage": "^1.14.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "~6.0.1",
-    "@react-navigation/stack": "~6.0.1",
     "@react-navigation/native-stack": "^6.0.2",
+    "@react-navigation/stack": "~6.0.1",
     "@unimodules/core": "6.0.0",
     "apisauce": "2.0.0",
     "expo-linear-gradient": "^9.2.0",
@@ -41,6 +43,7 @@
     "mobx": "6.1.8",
     "mobx-react-lite": "3.2.0",
     "mobx-state-tree": "5.0.1",
+    "osmicsx": "^0.6.10",
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-gesture-handler": "1.10.3",
@@ -48,6 +51,7 @@
     "react-native-safe-area-context": "3.1.8",
     "react-native-screens": "3.4.0",
     "react-native-unimodules": "0.12.0",
+    "react-native-vector-icons": "^9.0.0",
     "reactotron-mst": "3.1.3",
     "reactotron-react-js": "^3.3.7",
     "reactotron-react-native": "5.0.0",
@@ -56,8 +60,11 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-decorators": "7.12.1",
+    "@babel/plugin-proposal-export-namespace-from": "^7.14.5",
     "@babel/plugin-proposal-optional-catch-binding": "7.12.1",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^3.0.1",
     "@storybook/addon-storyshots": "6.1.10",
     "@storybook/react-native": "5.3.23",
     "@storybook/react-native-server": "5.3.23",
@@ -70,20 +77,25 @@
     "@typescript-eslint/parser": "4.10.0",
     "babel-jest": "26.6.3",
     "babel-loader": "8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
     "detox": "17.14.5",
-    "eslint": "7.15.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "7.0.0",
     "eslint-config-standard": "16.0.2",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-native": "3.10.0",
     "fbjs-scripts": "3.0.0",
+    "husky": "^7.0.2",
     "jest": "^25.5.4",
     "jest-circus": "25.5.4",
     "jest-expo": "^40.0.1",
     "jetifier": "1.6.6",
+    "lint-staged": "^11.2.0",
+    "metro-react-native-babel-preset": "^0.66.2",
     "npm-run-all": "4.1.5",
     "patch-package": "6.2.2",
     "postinstall-prepare": "1.0.1",
@@ -91,6 +103,7 @@
     "react-devtools-core": "4.10.1",
     "react-dom": "^17.0.2",
     "react-native-clean-project": "^3.6.3",
+    "react-native-svg-transformer": "^0.14.3",
     "react-native-web": "^0.16.3",
     "react-powerplug": "1.0.0",
     "solidarity": "2.3.1",
@@ -110,10 +123,11 @@
     ]
   },
   "prettier": {
-    "printWidth": 100,
-    "semi": false,
-    "singleQuote": false,
-    "trailingComma": "all"
+    "bracketSpacing": false,
+    "jsxBracketSameLine": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "avoid"
   },
   "detox": {
     "test-runner": "jest",
@@ -140,19 +154,23 @@
   },
   "eslintConfig": {
     "root": true,
-    "parser": "@typescript-eslint/parser",
-    "extends": [
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
-      "plugin:react-native/all",
-      "standard",
-      "prettier",
-      "prettier/@typescript-eslint"
-    ],
+    "extends": "@react-native-community",
     "plugins": [
       "@typescript-eslint",
       "react",
-      "react-native"
+      "react-native",
+      "prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.e2e.js"
+        ],
+        "env": {
+          "jest": true,
+          "jest/globals": true
+        }
+      }
     ],
     "parserOptions": {
       "ecmaFeatures": {
@@ -166,40 +184,40 @@
         "version": "detect"
       }
     },
-    "globals": {
-      "__DEV__": false,
-      "jasmine": false,
-      "beforeAll": false,
-      "afterAll": false,
-      "beforeEach": false,
-      "afterEach": false,
-      "test": false,
-      "expect": false,
-      "describe": false,
-      "jest": false,
-      "it": false
-    },
     "rules": {
-      "@typescript-eslint/ban-ts-ignore": 0,
-      "@typescript-eslint/explicit-function-return-type": 0,
-      "@typescript-eslint/explicit-member-accessibility": 0,
-      "@typescript-eslint/explicit-module-boundary-types": 0,
-      "@typescript-eslint/indent": 0,
-      "@typescript-eslint/member-delimiter-style": 0,
-      "@typescript-eslint/no-empty-interface": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "@typescript-eslint/no-object-literal-type-assertion": 0,
-      "@typescript-eslint/no-var-requires": 0,
-      "comma-dangle": 0,
-      "multiline-ternary": 0,
-      "no-undef": 0,
-      "no-unused-vars": 0,
-      "no-use-before-define": "off",
-      "quotes": 0,
-      "react-native/no-raw-text": 0,
-      "react/no-unescaped-entities": 0,
-      "react/prop-types": "off",
-      "space-before-function-paren": 0
+      "react-hooks/exhaustive-deps": "warn",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "vars": "all",
+          "args": "none",
+          "ignoreRestSiblings": false
+        }
+      ],
+      "prettier/prettier": [
+        1,
+        {
+          "singleQuote": true,
+          "semi": true
+        }
+      ]
     }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn pre-commit",
+      "pre-push": "yarn lint",
+      "pre-build": "yarn lint"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+      "eslint --ext .tsx --ext .ts src/ --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">= 1.0.0"
   }
 }

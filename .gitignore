@@ -79,5 +79,5 @@ npm-debug.*
 web-build/
 
 # Configurations
-app/config/env.*.js
+src/config/env.*.js
 !env.js
