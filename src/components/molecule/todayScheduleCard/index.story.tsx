@@ -3,9 +3,6 @@ import {storiesOf} from '@storybook/react-native';
 import {StoryScreen, Story, UseCase} from '../../../../storybook/views';
 import TodayScheduleCard from './index';
 
-// // styles
-// import {apply} from '@theme';
-
 declare let module;
 
 storiesOf('Schedule Card', module)

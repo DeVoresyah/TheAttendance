@@ -8,6 +8,7 @@ require('../src/components/atom/scheduleCard/index.story');
 
 // molecule
 require('../src/components/molecule/clock/index.story');
+require('../src/components/molecule/todayScheduleCard/index.story');
+require('../src/components/molecule/nextScheduleCard/index.story');
 
 // organism
-require('../src/components/organism/todayScheduleCard/index.story');
