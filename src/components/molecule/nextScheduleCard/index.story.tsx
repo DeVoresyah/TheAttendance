@@ -6,7 +6,7 @@ import NextScheduleCard from './index';
 declare let module;
 
 const scheduleStart = new Date('03-11-2021 16:00:00');
-const scheduleEnd = new Date('03-11-2021 16:00:00');
+const scheduleEnd = new Date('03-11-2021 18:00:00');
 
 storiesOf('Schedule Card', module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
