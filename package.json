@@ -47,6 +47,7 @@
     "osmicsx": "^0.6.10",
     "react": "17.0.1",
     "react-native": "0.64.2",
+    "react-native-dashed-line": "^1.1.0",
     "react-native-fast-image": "^8.5.11",
     "react-native-gesture-handler": "1.10.3",
     "react-native-keychain": "6.2.0",

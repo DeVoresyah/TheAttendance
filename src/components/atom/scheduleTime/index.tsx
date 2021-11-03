@@ -9,8 +9,8 @@ import {apply} from '@theme';
 
 export interface IScheduleTime {
   containerStyle?: StyleProp<ViewStyle>;
-  startTime?: Date;
-  endTime?: Date;
+  startTime: Date;
+  endTime: Date;
 }
 
 const ScheduleTime: FC<IScheduleTime> = props => {
