@@ -24,11 +24,13 @@ export interface INextScheduleSection {
   containerStyle?: StyleProp<ViewStyle>;
   lastCardStyle?: StyleProp<ViewStyle>;
   contentContainerStyle?: StyleProp<ViewStyle>;
+  headerContainerStyle?: StyleProp<ViewStyle>;
 }
 
 const NextScheduleSection: FC<INextScheduleSection> = props => {
   const {
     contentContainerStyle,
+    headerContainerStyle,
     containerStyle,
     lastCardStyle,
     loading = false,
@@ -38,7 +40,7 @@ const NextScheduleSection: FC<INextScheduleSection> = props => {
 
   return (
     <View style={[styles.container, containerStyle]}>
-      <View style={styles.header}>
+      <View style={[styles.header, headerContainerStyle]}>
         <Text style={styles.title}>Next Schedule</Text>
         <Text style={styles.helper} onPress={onAll}>
           See All

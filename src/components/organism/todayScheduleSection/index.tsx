@@ -21,14 +21,21 @@ export interface ITodayScheduleSection {
   data: ITodayScheduleCard | null;
   loading?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
+  headerContainerStyle?: StyleProp<ViewStyle>;
 }
 
 const TodayScheduleSection: FC<ITodayScheduleSection> = props => {
-  const {containerStyle, onRefresh, loading, data} = props;
+  const {
+    headerContainerStyle,
+    containerStyle,
+    onRefresh,
+    loading,
+    data,
+  } = props;
 
   return (
     <View style={[styles.container, containerStyle]}>
-      <View style={styles.header}>
+      <View style={[styles.header, headerContainerStyle]}>
         <Text style={styles.title}>Today's Schedule</Text>
         <Text style={styles.helper} onPress={onRefresh}>
           Refresh

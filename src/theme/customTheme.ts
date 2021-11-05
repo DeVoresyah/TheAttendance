@@ -11,7 +11,7 @@ export default {
   },
   border: {
     radius: {
-      'super-lg': 20,
+      'super-lg': 24,
     },
   },
   font: {
