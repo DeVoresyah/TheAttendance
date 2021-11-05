@@ -5,6 +5,7 @@ require('../src/components/atom/scheduleTime/index.story');
 require('../src/components/atom/scheduleDate/index.story');
 require('../src/components/atom/badge/index.story');
 require('../src/components/atom/scheduleCard/index.story');
+require('../src/components/atom/homeHero/index.story');
 
 // molecule
 require('../src/components/molecule/clock/index.story');
@@ -13,3 +14,5 @@ require('../src/components/molecule/nextScheduleCard/index.story');
 require('../src/components/molecule/upcomingScheduleCard/index.story');
 
 // organism
+require('../src/components/organism/todayScheduleSection/index.story');
+require('../src/components/organism/nextScheduleSection/index.story');

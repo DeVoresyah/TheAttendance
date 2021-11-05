@@ -9,9 +9,15 @@ export default {
     'silver-600': '#8a8a8a',
     'silver-700': '#797979',
   },
+  border: {
+    radius: {
+      'super-lg': 24,
+    },
+  },
   font: {
     size: {
       xxs: 10,
+      'super-lg': 40,
     },
     family: {
       regular: 'Roboto-Regular',

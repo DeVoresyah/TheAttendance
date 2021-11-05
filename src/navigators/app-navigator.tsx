@@ -14,7 +14,7 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {navigationRef} from './navigation-utilities';
 
-import WelcomeScreen from '@screens/welcome/welcome-screen';
+import HomeScreen from '@screens/home';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -29,7 +29,7 @@ import WelcomeScreen from '@screens/welcome/welcome-screen';
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type NavigatorParamList = {
-  welcome: undefined;
+  home: undefined;
 };
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -37,12 +37,8 @@ const Stack = createNativeStackNavigator<NavigatorParamList>();
 
 const AppStack = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      initialRouteName="welcome">
-      <Stack.Screen name="welcome" component={WelcomeScreen} />
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="home" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
@@ -73,5 +69,5 @@ AppNavigator.displayName = 'AppNavigator';
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ['welcome'];
+const exitRoutes = ['home'];
 export const canExit = (routeName: string) => exitRoutes.includes(routeName);
