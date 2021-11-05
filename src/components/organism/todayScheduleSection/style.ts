@@ -5,4 +5,5 @@ export default connect({
   header: 'row items-center justify-between mb-3',
   title: 'text-xl font-bold text-black uppercase',
   helper: 'text-base font-medium text-primary-500',
+  emptyTitle: 'text-base font-medium text-silver-500 text-center',
 });

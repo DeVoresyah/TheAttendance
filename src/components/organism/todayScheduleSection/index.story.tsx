@@ -27,6 +27,14 @@ storiesOf('Home Section', module)
         />
       </UseCase>
       <UseCase
+        text="Data Empty"
+        usage="Today Schedule Section with data empty.">
+        <TodayScheduleSection
+          onRefresh={() => Alert.alert('', 'Refresh Data!')}
+          data={null}
+        />
+      </UseCase>
+      <UseCase
         text="Data Loading"
         usage="Today Schedule Section with data still loading.">
         <TodayScheduleSection

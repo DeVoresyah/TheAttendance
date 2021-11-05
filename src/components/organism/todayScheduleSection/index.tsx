@@ -35,9 +35,15 @@ const TodayScheduleSection: FC<ITodayScheduleSection> = props => {
         </Text>
       </View>
 
-      <View style={loading && apply('flex items-center justify-center')}>
+      <View
+        style={
+          (loading || data === null) &&
+          apply('flex items-center justify-center')
+        }>
         {loading ? (
           <ActivityIndicator size="large" color={apply('product-500')} />
+        ) : data === null ? (
+          <Text style={styles.emptyTitle}>You Don't Have Any Schedule</Text>
         ) : (
           <TodayScheduleCard
             title={data.title}
