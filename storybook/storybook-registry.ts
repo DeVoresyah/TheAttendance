@@ -14,3 +14,4 @@ require('../src/components/molecule/nextScheduleCard/index.story');
 require('../src/components/molecule/upcomingScheduleCard/index.story');
 
 // organism
+require('../src/components/organism/todayScheduleSection/index.story');

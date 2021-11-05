@@ -1,13 +1,16 @@
 import {useState, useEffect, useMemo, FC, memo} from 'react';
-import {View, Text} from 'react-native';
+import {StyleProp, ViewStyle, View, Text} from 'react-native';
 import dayjs from 'dayjs';
 
 // Styles
 import styles from './style';
 
-export interface IHomeHero {}
+export interface IHomeHero {
+  containerStyle?: StyleProp<ViewStyle>;
+}
 
 const HomeHero: FC<IHomeHero> = props => {
+  const {containerStyle} = props;
   const [timeNow, setTimeNow] = useState(new Date());
 
   useEffect(() => {
@@ -33,7 +36,7 @@ const HomeHero: FC<IHomeHero> = props => {
   }, [timeNow]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <Text style={styles.time}>{formattedTime}</Text>
       <Text style={styles.date}>{formattedDate}</Text>
     </View>
