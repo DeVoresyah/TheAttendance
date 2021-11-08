@@ -28,6 +28,7 @@
       "@navigators/*": ["./src/navigators/*"],
       "@screens/*": ["./src/screens/*"],
       "@api": ["./src/services/api"],
+      "@api/*": ["./src/services/api/*"],
       "@theme": ["./src/theme"],
       "@utils/*": ["./src/utils/*"]
     },

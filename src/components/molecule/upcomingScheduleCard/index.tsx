@@ -1,5 +1,5 @@
 import {FC, useMemo, memo} from 'react';
-import {View, Text} from 'react-native';
+import {StyleProp, ViewStyle, View, Text} from 'react-native';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import {calendarConfig} from '@utils/dateUtils';
@@ -18,10 +18,11 @@ export interface IUpcomingScheduleCard {
   schedule: Date;
   timeStart: Date;
   timeEnd: Date;
+  cardStyle?: StyleProp<ViewStyle>;
 }
 
 const UpcomingScheduleCard: FC<IUpcomingScheduleCard> = props => {
-  const {title, schedule, timeStart, timeEnd} = props;
+  const {cardStyle, title, schedule, timeStart, timeEnd} = props;
 
   /**
    * Check if the schedule today or not.
@@ -37,7 +38,7 @@ const UpcomingScheduleCard: FC<IUpcomingScheduleCard> = props => {
   }, [schedule]);
 
   return (
-    <ScheduleCard>
+    <ScheduleCard style={cardStyle}>
       <Text style={styles.title}>{title}</Text>
 
       <View style={styles.footer}>

@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 // Unimodules: https://docs.expo.io/bare/installing-unimodules/#configuration-for-android
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
 
 import com.android.build.OutputFile
