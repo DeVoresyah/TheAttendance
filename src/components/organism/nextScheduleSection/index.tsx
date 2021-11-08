@@ -1,4 +1,4 @@
-import {FC, memo} from 'react';
+import {FC, memo, useCallback} from 'react';
 import {
   ActivityIndicator,
   StyleProp,
@@ -7,6 +7,9 @@ import {
   View,
   Text,
 } from 'react-native';
+import {useStores} from '@models';
+import {navigate} from '@navigators';
+import {TodaySchedule} from '@models/schedule/todaySchedule';
 
 // Components
 import NextScheduleCard, {
@@ -37,6 +40,15 @@ const NextScheduleSection: FC<INextScheduleSection> = props => {
     onAll,
     data,
   } = props;
+  const {detailPlaceStore} = useStores();
+
+  /**
+   * Go to detail schedule
+   */
+  const onDetail = useCallback((data: TodaySchedule) => {
+    detailPlaceStore.getDetailPlace(data.id);
+    navigate('detailSchedule', {data});
+  }, []);
 
   return (
     <View style={[styles.container, containerStyle]}>
@@ -63,6 +75,9 @@ const NextScheduleSection: FC<INextScheduleSection> = props => {
           initialNumToRender={2}
           renderItem={({item, index}) => (
             <NextScheduleCard
+              onPress={onDetail}
+              id={item.id}
+              placeId={item.placeId}
               schedule={item.schedule}
               title={item.title}
               timeStart={item.timeStart}

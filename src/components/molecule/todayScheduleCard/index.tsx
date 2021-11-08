@@ -1,6 +1,7 @@
-import {FC, memo} from 'react';
+import {FC, useCallback, memo} from 'react';
 import {View, Text} from 'react-native';
 import DashedLine from 'react-native-dashed-line';
+import {TodaySchedule} from '@models/schedule/todaySchedule';
 
 // Components
 import ScheduleCard from '@components/atom/scheduleCard';
@@ -11,19 +12,41 @@ import Clock from '@components/molecule/clock';
 import styles from './style';
 import {apply} from '@theme';
 
-export interface ITodayScheduleCard {
-  title: string;
-  timeStart: Date;
-  timeEnd: Date;
-  clockIn?: Date | null;
-  clockOut?: Date | null;
+export interface ITodaySchedule extends TodaySchedule {
+  onPress?: (data: TodaySchedule) => void;
 }
 
-const TodayScheduleCard: FC<ITodayScheduleCard> = props => {
-  const {title, timeStart, timeEnd, clockIn, clockOut} = props;
+const TodayScheduleCard: FC<ITodaySchedule> = props => {
+  const {
+    placeId,
+    id,
+    title,
+    timeStart,
+    timeEnd,
+    clockIn,
+    clockOut,
+    onPress,
+  } = props;
+
+  /**
+   * On Card Press
+   */
+  const onScheduleDetail = useCallback(
+    () =>
+      onPress({
+        placeId,
+        id,
+        title,
+        timeStart,
+        timeEnd,
+        clockIn,
+        clockOut,
+      }),
+    [placeId, id, title, timeStart, timeEnd, clockIn, clockOut, onPress],
+  );
 
   return (
-    <ScheduleCard style={styles.container}>
+    <ScheduleCard onPress={onScheduleDetail} style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <ScheduleTime startTime={timeStart} endTime={timeEnd} />
 

@@ -7,6 +7,8 @@ import TodayScheduleSection from './index';
 declare let module;
 
 const dataDummy = {
+  placeId: 1,
+  id: 1,
   title: 'Mediterania Garden Residence',
   timeStart: new Date('2021-11-05 16:00:00'),
   timeEnd: new Date('2021-11-05 18:00:00'),
