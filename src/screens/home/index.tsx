@@ -8,6 +8,7 @@ import {useStores} from '@models';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // Components
+import StatusBar from '@components/atom/statusBar';
 import Avatar from '@components/atom/avatar';
 import HomeHero from '@components/atom/homeHero';
 import TodayScheduleSection from '@components/organism/todayScheduleSection';
@@ -65,6 +66,10 @@ const HomeScreen: FC<StackScreenProps<NavigatorParamList, 'home'>> = props => {
     <SafeAreaView
       style={apply('flex bg-white')}
       edges={['left', 'right', 'bottom']}>
+      <StatusBar
+        backgroundColor={apply('product-500')}
+        barStyle="dark-content"
+      />
       <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <HomeHero containerStyle={apply('pt-5 mb-7')} />
 

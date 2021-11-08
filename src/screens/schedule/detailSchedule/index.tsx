@@ -8,6 +8,7 @@ import {useStores} from '@models';
 import dayjs from 'dayjs';
 
 // Components
+import StatusBar from '@components/atom/statusBar';
 import PlaceCard from '@components/molecule/placeCard';
 import ScheduleInfoCard from '@components/molecule/scheduleInfoCard';
 
@@ -44,6 +45,10 @@ const DetailScheduleScreen: FC<
         detailPlaceFetchingStatus && apply('items-center justify-center'),
       ]}
       edges={['left', 'right', 'bottom']}>
+      <StatusBar
+        backgroundColor={apply('product-500')}
+        barStyle="dark-content"
+      />
       {detailPlaceFetchingStatus ? (
         <ActivityIndicator size="large" color={apply('product-500')} />
       ) : (
