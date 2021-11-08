@@ -1,5 +1,19 @@
 import {GeneralApiProblem} from './api-problem';
-import {Character} from '../../models/character/character';
+import {TodaySchedule} from '@models/schedule/todaySchedule';
+import {NextSchedule} from '@models/schedule/nextSchedule';
+import {Place} from '@models/places/detailPlace';
+
+export type GetTodayScheduleResult =
+  | {kind: 'ok'; data: TodaySchedule}
+  | GeneralApiProblem;
+
+export type GetNextScheduleResult =
+  | {kind: 'ok'; data: NextSchedule[]}
+  | GeneralApiProblem;
+
+export type GetDetailPlaceResult =
+  | {kind: 'ok'; data: Place}
+  | GeneralApiProblem;
 
 export interface User {
   id: number;
@@ -8,10 +22,3 @@ export interface User {
 
 export type GetUsersResult = {kind: 'ok'; users: User[]} | GeneralApiProblem;
 export type GetUserResult = {kind: 'ok'; user: User} | GeneralApiProblem;
-
-export type GetCharactersResult =
-  | {kind: 'ok'; characters: Character[]}
-  | GeneralApiProblem;
-export type GetCharacterResult =
-  | {kind: 'ok'; character: Character}
-  | GeneralApiProblem;

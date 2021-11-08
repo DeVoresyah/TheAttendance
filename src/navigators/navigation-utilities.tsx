@@ -6,6 +6,7 @@ import {
   NavigationAction,
   createNavigationContainerRef,
 } from '@react-navigation/native';
+import {NavigatorParamList} from '@navigators';
 
 /* eslint-disable */
 export const RootNavigation = {
@@ -143,7 +144,7 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
  * prop. If you have access to the navigation prop, do not use this.
  * More info: https://reactnavigation.org/docs/navigating-without-navigation-prop/
  */
-export function navigate(name: any, params?: any) {
+export function navigate(name: keyof NavigatorParamList, params?: any) {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name as never, params as never);
   }

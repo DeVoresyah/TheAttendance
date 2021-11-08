@@ -1,26 +1,21 @@
 import {ApiResponse} from 'apisauce';
 import {Api} from './api';
-import {GetCharactersResult} from './api.types';
+import {GetDetailPlaceResult} from './api.types';
 import {getGeneralApiProblem} from './api-problem';
 
-const API_PAGE_SIZE = 50;
-
-export class CharacterApi {
+export class PlaceApi {
   private api: Api;
 
   constructor(api: Api) {
     this.api = api;
   }
 
-  async getCharacters(): Promise<GetCharactersResult> {
+  async getDetailPlace(id: number): Promise<GetDetailPlaceResult> {
     try {
-      // make the api call
       const response: ApiResponse<any> = await this.api.apisauce.get(
-        'https://raw.githubusercontent.com/infinitered/ignite/master/data/rick-and-morty.json',
-        {amount: API_PAGE_SIZE},
+        `places/${id}`,
       );
 
-      // the typical ways to die when calling an api
       if (!response.ok) {
         const problem = getGeneralApiProblem(response);
         if (problem) {
@@ -28,9 +23,7 @@ export class CharacterApi {
         }
       }
 
-      const characters = response.data.results;
-
-      return {kind: 'ok', characters};
+      return {kind: 'ok', data: response.data};
     } catch (e) {
       __DEV__ && console.tron.log(e.message);
       return {kind: 'bad-data'};
