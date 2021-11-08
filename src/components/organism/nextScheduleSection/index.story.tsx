@@ -9,6 +9,8 @@ declare let module;
 
 const dataDummy = [
   {
+    placeId: 1,
+    id: 1,
     schedule: new Date('2021-11-05 16:00:00'),
     title: 'Mediterania Garden Residence',
     timeStart: new Date('2021-11-05 16:00:00'),
@@ -17,6 +19,8 @@ const dataDummy = [
     clockOut: null,
   },
   {
+    placeId: 1,
+    id: 2,
     schedule: new Date('2021-11-06 16:00:00'),
     title: 'Mediterania Garden Residence',
     timeStart: new Date('2021-11-06 16:00:00'),
@@ -25,6 +29,8 @@ const dataDummy = [
     clockOut: null,
   },
   {
+    placeId: 1,
+    id: 3,
     schedule: new Date('2021-11-07 16:00:00'),
     title: 'Mediterania Garden Residence',
     timeStart: new Date('2021-11-07 16:00:00'),

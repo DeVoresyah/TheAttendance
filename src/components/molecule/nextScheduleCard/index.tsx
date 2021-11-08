@@ -1,5 +1,7 @@
-import {FC, memo} from 'react';
+import {FC, memo, useCallback} from 'react';
 import {StyleProp, ViewStyle, View, Text} from 'react-native';
+import {NextSchedule} from '@models/schedule/nextSchedule';
+import {TodaySchedule} from '@models/schedule/todaySchedule';
 
 // Components
 import ScheduleCard from '@components/atom/scheduleCard';
@@ -10,19 +12,44 @@ import ScheduleTime from '@components/atom/scheduleTime';
 import styles from './style';
 import {apply} from '@theme';
 
-export interface INextScheduleCard {
-  schedule: Date;
-  title: string;
-  timeStart: Date;
-  timeEnd: Date;
+export interface INextScheduleCard extends NextSchedule {
+  onPress?: (data: TodaySchedule) => void;
   cardStyle?: StyleProp<ViewStyle>;
 }
 
 const NextScheduleCard: FC<INextScheduleCard> = props => {
-  const {schedule, title, timeStart, timeEnd, cardStyle} = props;
+  const {
+    placeId,
+    id,
+    schedule,
+    title,
+    timeStart,
+    timeEnd,
+    cardStyle,
+    onPress,
+  } = props;
+
+  /**
+   * On Card Press
+   */
+  const onScheduleDetail = useCallback(
+    () =>
+      onPress({
+        placeId,
+        id,
+        title,
+        timeStart,
+        timeEnd,
+        clockIn: null,
+        clockOut: null,
+      }),
+    [placeId, id, schedule, title, timeStart, timeEnd, onPress],
+  );
 
   return (
-    <ScheduleCard style={[styles.container, cardStyle]}>
+    <ScheduleCard
+      onPress={onScheduleDetail}
+      style={[styles.container, cardStyle]}>
       <ScheduleDate date={schedule} />
 
       <View style={apply('mt-5')}>

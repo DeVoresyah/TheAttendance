@@ -11,6 +11,8 @@ storiesOf('Schedule Card', module)
     <Story>
       <UseCase text="Today Schedule Card" usage="Schedule card for today.">
         <TodayScheduleCard
+          id={1}
+          placeId={1}
           title="Mediterania Garden Residence"
           timeStart={new Date('03-11-2021 16:00:00')}
           timeEnd={new Date('03-11-2021 18:00:00')}

@@ -16,6 +16,8 @@ storiesOf('Schedule Card', module)
         text="Next Schedule Card"
         usage="Schedule card for next/upcoming.">
         <NextScheduleCard
+          id={1}
+          placeId={1}
           title="Mediterania Garden Residence"
           schedule={scheduleStart}
           timeStart={scheduleStart}
