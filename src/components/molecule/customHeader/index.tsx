@@ -1,5 +1,5 @@
 import {FC, memo} from 'react';
-import {Pressable, View, Text} from 'react-native';
+import {Pressable, Platform, View, Text} from 'react-native';
 import {getHeaderTitle} from '@react-navigation/elements';
 import {StackHeaderProps} from '@react-navigation/stack';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
@@ -15,7 +15,11 @@ const CustomHeader: FC<StackHeaderProps | NativeStackHeaderProps> = props => {
   const title = getHeaderTitle(options, route.name);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        Platform.OS === 'android' && styles.containerAndroid,
+      ]}>
       <View style={styles.leftContainer}>
         {back ? (
           <Pressable onPress={navigation.goBack}>

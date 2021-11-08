@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CalendarStrip from 'react-native-calendar-strip';
 
 // Components
+import StatusBar from '@components/atom/statusBar';
 import UpcomingScheduleCard from '@components/molecule/upcomingScheduleCard';
 
 // Styles
@@ -56,6 +57,10 @@ const UpcomingScheduleScreen: FC<
     <SafeAreaView
       style={apply('flex bg-white')}
       edges={['left', 'right', 'bottom']}>
+      <StatusBar
+        backgroundColor={apply('product-500')}
+        barStyle="dark-content"
+      />
       <CalendarStrip
         scrollable
         style={{height: 90, paddingTop: 0, paddingBottom: 10}}
